@@ -1,0 +1,111 @@
+
+// Program: Golden Pickaxe
+// Developer: Forex Robot Easy Team
+// Developer's site: forexroboteasy.com
+
+// Include necessary libraries
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+// Define constants
+const int MAX_TRAINING_ITERATIONS = 1000;
+const double MAX_LOSS_THRESHOLD = 0.05;
+
+// Define structures
+struct Trade {
+  double entryPrice;
+  double exitPrice;
+  std::string direction;
+};
+
+struct MarketData {
+  double price;
+  std::string news;
+};
+
+// Define functions
+void trainNeuralNetwork(std::vector<MarketData>& trainingData) {
+  // Implement machine learning logic here
+  // Training code goes here
+}
+
+void retrainNeuralNetwork(std::vector<MarketData>& brokerData) {
+  // Implement Neural Network retraining logic here
+  // Neural Network retraining code goes here
+}
+
+bool filterMarketCrash(std::string news) {
+  // Implement filtering logic for market crashes here
+  // Market crash filtering code goes here
+  return false;
+}
+
+void trade(std::vector<MarketData>& marketData) {
+  // Implement trading logic here
+  // Trading code goes here
+
+  // Sample code for trading
+  std::vector<Trade> trades;
+  for (int i = 0; i < marketData.size(); i++) {
+    if (filterMarketCrash(marketData[i].news)) {
+      continue;
+    }
+
+    // Place trade based on market conditions
+    Trade trade;
+    trade.entryPrice = marketData[i].price;
+    trade.direction = 'BUY';
+    trades.push_back(trade);
+  }
+
+  // Close trades based on exit conditions
+  for (int i = 0; i < trades.size(); i++) {
+    trades[i].exitPrice = marketData.back().price;
+  }
+
+  // Output trading results
+  std::cout << 'Total trades: ' << trades.size() << std::endl;
+  for (int i = 0; i < trades.size(); i++) {
+    std::cout << 'Trade ' << i + 1 << ': Entry Price - ' << trades[i].entryPrice << ', Exit Price - ' << trades[i].exitPrice << std::endl;
+  }
+}
+
+// Main function
+int main() {
+  // Sample market data
+  std::vector<MarketData> marketData = {
+    {1500.50, 'Positive news'},
+    {1499.75, 'Neutral news'},
+    {1500.25, 'Negative news'},
+    {1501.00, 'Positive news'},
+    {1501.50, 'Neutral news'},
+    {1500.75, 'Negative news'},
+    {1502.00, 'Positive news'},
+    {1502.50, 'Neutral news'},
+    {1501.75, 'Negative news'}
+  };
+
+  // Train the Neural Network
+  trainNeuralNetwork(marketData);
+
+  // Retrain the Neural Network on broker's data
+  std::vector<MarketData> brokerData = {
+    {1500.50, 'Positive news'},
+    {1499.75, 'Neutral news'},
+    {1500.25, 'Negative news'},
+    {1501.00, 'Positive news'},
+    {1501.50, 'Neutral news'},
+    {1500.75, 'Negative news'},
+    {1502.00, 'Positive news'},
+    {1502.50, 'Neutral news'},
+    {1501.75, 'Negative news'}
+  };
+  retrainNeuralNetwork(brokerData);
+
+  // Trade based on market data
+  trade(marketData);
+
+  return 0;
+}
